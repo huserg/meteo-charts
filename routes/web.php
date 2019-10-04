@@ -12,8 +12,9 @@
 */
 
 Route::get('/', function () {
+
     return view('auth/login');
-});
+})->middleware('guest');
 
 Auth::routes();
 
@@ -25,4 +26,4 @@ Route::post('register',  function() {
     return view ('auth/login');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
