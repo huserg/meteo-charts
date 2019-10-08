@@ -27,3 +27,4 @@ Route::post('register',  function() {
 });
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::post('/dashboard', 'DashboardController@index')->name('dashboard');

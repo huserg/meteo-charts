@@ -72,7 +72,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #f8fafc;
+  background-color: #292929;
 }
 
 [tabindex="-1"]:focus {
@@ -517,7 +517,7 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #f8fafc;
+  background-color: #292929;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
   max-width: 100%;
@@ -4097,15 +4097,15 @@ input[type=button].btn-block {
 }
 
 .custom-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #292929, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #292929, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range:focus::-ms-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 1px #292929, 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 .custom-range::-moz-focus-outer {
@@ -4305,8 +4305,8 @@ input[type=button].btn-block {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #f8fafc;
-  border-color: #dee2e6 #dee2e6 #f8fafc;
+  background-color: #292929;
+  border-color: #dee2e6 #dee2e6 #292929;
 }
 
 .nav-tabs .dropdown-menu {
@@ -10642,5 +10642,72 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+html,
+body,
+main,
+.modal-content {
+  background-color: #292929 !important;
+  color: #ffffff !important;
+}
+
+nav {
+  background-color: #0064b7 !important;
+}
+
+nav a {
+  color: #ffffff !important;
+}
+
+nav .dropdown-menu,
+nav .dropdown-item {
+  background-color: #0064b7 !important;
+}
+
+nav .dropdown-item:hover {
+  background-color: #0091ea !important;
+}
+
+.form-group > *:not(label) {
+  color: #ffffff !important;
+  background-color: #515151 !important;
+}
+
+.alert {
+  background-color: #515151;
+  border: none;
+}
+
+.card {
+  border: none;
+}
+
+.card-header {
+  background-color: #515151;
+}
+
+.card-body {
+  background-color: #fff;
+  color: #000000;
+}
+
+.btn-primary {
+  background-color: #fff !important;
+  color: #000000;
+  border-color: #000000 !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #fff;
+  color: #0064b7;
+  border-color: #0064b7 !important;
+}
+
+.btn-primary:active {
+  background-color: #fff;
+  color: #0064b7 !important;
+  border-color: #0064b7 !important;
 }
 

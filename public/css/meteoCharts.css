@@ -1,0 +1,67 @@
+html,
+body,
+main,
+.modal-content {
+  background-color: #292929 !important;
+  color: #ffffff !important;
+}
+
+nav {
+  background-color: #0064b7 !important;
+}
+
+nav a {
+  color: #ffffff !important;
+}
+
+nav .dropdown-menu,
+nav .dropdown-item {
+  background-color: #0064b7 !important;
+}
+
+nav .dropdown-item:hover {
+  background-color: #0091ea !important;
+}
+
+.form-group > *:not(label) {
+  color: #ffffff !important;
+  background-color: #515151 !important;
+}
+
+.alert {
+  background-color: #515151;
+  border: none;
+}
+
+.card {
+  border: none;
+}
+
+.card-header {
+  background-color: #515151;
+}
+
+.card-body {
+  background-color: #fff;
+  color: #000000;
+}
+
+.btn-primary {
+  background-color: #fff !important;
+  color: #000000;
+  border-color: #000000 !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #fff;
+  color: #0064b7;
+  border-color: #0064b7 !important;
+}
+
+.btn-primary:active {
+  background-color: #fff;
+  color: #0064b7 !important;
+  border-color: #0064b7 !important;
+}
+

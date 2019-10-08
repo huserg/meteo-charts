@@ -16,4 +16,19 @@ class Rpi extends Model
     ];
 
 
+    public function temperature() {
+        return $this->hasMany(Temperature::class);
+    }
+
+    public function light() {
+        return $this->hasMany(Light::class);
+    }
+
+    public function humidity() {
+        return $this->hasMany(Humidity::class);
+    }
+
+    public function pressure() {
+        return $this->hasMany(Pressure::class);
+    }
 }
