@@ -1,24 +1,21 @@
 @extends('layouts.app')
 
+@section('navbar-mid')
+<div class="row">
+    <div class="col-6 col-md-9">
+        <input id="rpi-location" class="form-control" type="text" value="{{$rpi->location}}" readonly>
+    </div>
+    <div class="col-6 col-md-3">
+        <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#rpiModal">
+            Filter
+        </button>
+    </div></div>
+
+@endsection
+
 @section('content')
 <div class="container">
     <div class="justify-content-center">
-        <div class="row">
-            <div class="col-12">
-                <div class="alert">
-                    <div class="row">
-                        <div class="col-6 col-sm-9">
-                            <input class="form-control" type="text" value="{{$rpi->location}}" readonly>
-                        </div>
-                        <div class="col-6 col-sm-3">
-                            <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#rpiModal">
-                                Filter
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-12">
                 <div class="card">
