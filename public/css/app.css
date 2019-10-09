@@ -10725,6 +10725,21 @@ nav .dropdown-item:hover {
   color: #fff;
 }
 
+#auth-card div.alert-success {
+  background-color: #cfc !important;
+  color: #000000 !important;
+}
+
+#auth-card div.alert-warning {
+  background-color: #ffa !important;
+  color: #000000 !important;
+}
+
+#auth-card div.alert-danger {
+  background-color: #faa !important;
+  color: #000000 !important;
+}
+
 *:focus:not(.btn-outline-danger) {
   outline-color: #fff !important;
   border-color: #fff !important;
