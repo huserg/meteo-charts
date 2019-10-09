@@ -165,6 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
+        \LaravelPWA\Providers\LaravelPWAServiceProvider::class,
+        \LaravelPWA\Providers\RouteServiceProvider::class,
 
         /*
          * Application Service Providers...

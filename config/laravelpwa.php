@@ -12,6 +12,7 @@ return [
         'orientation'=> 'any',
         'icons' => [
             '96x96' => '/images/icons/icon-96.png',
+            '192x192' => '/images/icons/icon-192.png',
             '512x512' => '/images/icons/icon-512.png'
         ],
         'splash' => [
