@@ -60,3 +60,7 @@ Compile assets :
 ```
 npm run prod
 ```
+
+## Preview
+
+![Preview image of Project](demo.png)
