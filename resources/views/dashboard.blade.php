@@ -17,52 +17,52 @@
 @section('content')
 <div class="container">
     <div class="justify-content-center">
-        @isset($tempChart)
-        <div class="card">
-            <div class="card-header">
-                <span class="font-weight-bold">Temperature</span>
-                <span class="float-right">{{ !empty($rpi->temperature->last()) ? $rpi->temperature->last()->degree . ' °C' : 'No Data' }}</span>
+        @isset($rpi->temperature->last()->degree)
+            <div class="card">
+                <div class="card-header">
+                    <span class="font-weight-bold">Temperature</span>
+                    <span class="float-right">{{ !empty($rpi->temperature->last()) ? $rpi->temperature->last()->degree . ' °C' : 'No Data' }}</span>
+                </div>
+                <div class="card-body">
+                    {!! $tempChart->container() !!}
+                </div>
             </div>
-            <div class="card-body">
-                {!! $tempChart->container() !!}
-            </div>
-        </div>
-        <br>
+            <br>
         @endisset
-        @isset($tempChart)
-        <div class="card">
-            <div class="card-header">
-                <span class="font-weight-bold">Humidity</span>
-                <span class="float-right">{{ !empty($rpi->humidity->last()) ? $rpi->humidity->last()->percentage . ' %' : 'No Data' }}</span>
+        @isset($rpi->humidity->last()->percentage)
+            <div class="card">
+                <div class="card-header">
+                    <span class="font-weight-bold">Humidity</span>
+                    <span class="float-right">{{ !empty($rpi->humidity->last()) ? $rpi->humidity->last()->percentage . ' %' : 'No Data' }}</span>
+                </div>
+                <div class="card-body">
+                    {!! $humChart->container() !!}
+                </div>
             </div>
-            <div class="card-body">
-                {!! $humChart->container() !!}
-            </div>
-        </div>
-        <br>
+            <br>
         @endisset
-        @isset($lightChart)
-        <div class="card">
-            <div class="card-header">
-                <span class="font-weight-bold">Light</span>
-                <span class="float-right">{{ !empty($rpi->light->last()) ? $rpi->light->last()->lux . ' lx' : 'No Data' }}</span>
+        @isset($rpi->light->last()->lux)
+            <div class="card">
+                <div class="card-header">
+                    <span class="font-weight-bold">Light</span>
+                    <span class="float-right">{{ !empty($rpi->light->last()) ? $rpi->light->last()->lux . ' lx' : 'No Data' }}</span>
+                </div>
+                <div class="card-body">
+                    {!! $lightChart->container() !!}
+                </div>
             </div>
-            <div class="card-body">
-                {!! $lightChart->container() !!}
-            </div>
-        </div>
-        <br>
+            <br>
         @endisset
-        @isset($pressureChart)
-        <div class="card">
-            <div class="card-header">
-                <span class="font-weight-bold">Pressure</span>
-                <span class="float-right">{{ !empty($rpi->pressure->last()) ? $rpi->pressure->last()->hpa . ' hPa' : 'No Data' }}</span>
+        @isset($rpi->pressure->last()->hpa)
+            <div class="card">
+                <div class="card-header">
+                    <span class="font-weight-bold">Pressure</span>
+                    <span class="float-right">{{ !empty($rpi->pressure->last()) ? $rpi->pressure->last()->hpa . ' hPa' : 'No Data' }}</span>
+                </div>
+                <div class="card-body">
+                    {!! $pressureChart->container() !!}
+                </div>
             </div>
-            <div class="card-body">
-                {!! $pressureChart->container() !!}
-            </div>
-        </div>
         @endisset
     </div>
 </div>
