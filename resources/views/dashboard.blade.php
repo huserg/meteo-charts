@@ -17,57 +17,53 @@
 @section('content')
 <div class="container">
     <div class="justify-content-center">
+        @isset($tempChart)
         <div class="card">
             <div class="card-header">
                 <span class="font-weight-bold">Temperature</span>
                 <span class="float-right">{{ !empty($rpi->temperature->last()) ? $rpi->temperature->last()->degree . ' °C' : 'No Data' }}</span>
             </div>
             <div class="card-body">
-                <div>
-                    @isset($tempChart)
-                        {!! $tempChart->container() !!}
-                    @endisset
-                </div>
+                {!! $tempChart->container() !!}
             </div>
         </div>
         <br>
+        @endisset
+        @isset($tempChart)
         <div class="card">
             <div class="card-header">
                 <span class="font-weight-bold">Humidity</span>
                 <span class="float-right">{{ !empty($rpi->humidity->last()) ? $rpi->humidity->last()->percentage . ' %' : 'No Data' }}</span>
             </div>
             <div class="card-body">
-                <div>
-                    @isset($tempChart)
-                    {!! $humChart->container() !!}
-                    @endisset
-                </div>
+                {!! $humChart->container() !!}
             </div>
         </div>
         <br>
+        @endisset
+        @isset($lightChart)
         <div class="card">
             <div class="card-header">
                 <span class="font-weight-bold">Light</span>
                 <span class="float-right">{{ !empty($rpi->light->last()) ? $rpi->light->last()->lux . ' lx' : 'No Data' }}</span>
             </div>
             <div class="card-body">
-                @isset($lightChart)
-                    {!! $lightChart->container() !!}
-                @endisset
+                {!! $lightChart->container() !!}
             </div>
         </div>
         <br>
+        @endisset
+        @isset($pressureChart)
         <div class="card">
             <div class="card-header">
                 <span class="font-weight-bold">Pressure</span>
                 <span class="float-right">{{ !empty($rpi->pressure->last()) ? $rpi->pressure->last()->hpa . ' hPa' : 'No Data' }}</span>
             </div>
             <div class="card-body">
-                @isset($pressureChart)
-                    {!! $pressureChart->container() !!}
-                @endisset
+                {!! $pressureChart->container() !!}
             </div>
         </div>
+        @endisset
     </div>
 </div>
 
