@@ -2,17 +2,21 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Humidity extends Model
 {
-    protected $table = 'humidity';
+    use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'percentage', 'created_at'
+    protected array $fillable = [
+        'percent',
+        'device_id',
     ];
 
-    public function sensor() {
-        return $this->belongsTo(Rpi::class);
+    public function device() : HasOne {
+        return $this->hasOne(Device::class);
     }
 }
