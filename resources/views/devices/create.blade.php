@@ -26,6 +26,10 @@
                                             <label for="mac_address" class="block text-sm font-medium text-gray-200">Mac address</label>
                                             <input type="text" name="mac_address" id="mac_address" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm bg-gray-600 text-gray-200 border-gray-300 rounded-md">
                                         </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="has_battery" class="block text-sm font-medium text-gray-200">Has battery</label>
+                                            <input type="checkbox" name="has_battery" id="has_battery" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm bg-gray-600 text-gray-200 border-gray-300 rounded-md">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="px-4 py-3 bg-gray-700 text-right sm:px-6">

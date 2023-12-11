@@ -22,6 +22,7 @@ class Device extends Model
         'mac_address',
         'token',
         'is_registrating',
+        'has_battery',
         'owner_id'
     ];
 

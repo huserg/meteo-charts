@@ -21,13 +21,14 @@ class DeviceController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'mac_address' => 'required|string|max:255',
-
+            'has_battery' => 'boolean',
         ]);
 
         $device = auth()->user()->devices()->create([
             'name' => $request->name,
             'mac_address' => $request->mac_address,
             'is_registrating' => true,
+            'has_battery' => $request->has_battery ?? false,
         ]);
 
         return redirect()->route('devices.index');
