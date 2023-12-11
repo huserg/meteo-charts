@@ -32,16 +32,17 @@ class Device extends Model
         // if device image is not set, return default image
         return $this->image ?? asset(self::DEFAULT_IMAGE);
     }
-    public function getLastTemperatureAttribute(): HasMany | null {
+    public function getLastTemperatureAttribute(): Temperature | null {
         return $this->temperatures()->latest()->first();
     }
-    public function getLastHumidityAttribute(): HasMany | null {
+    public function getLastHumidityAttribute(): Humidity | null {
         return $this->humidities()->latest()->first();
     }
-    public function getLastPressureAttribute(): HasMany | null {
+    public function getLastPressureAttribute(): Pressure | null {
         return $this->pressures()->latest()->first();
     }
-    public function getLastBatteryLevelAttribute(): HasMany | null {
+    public function getLastBatteryLevelAttribute(): BatteryLevel | null
+    {
         return $this->batteryLevels()->latest()->first();
     }
 
