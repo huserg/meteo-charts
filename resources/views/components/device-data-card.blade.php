@@ -53,7 +53,7 @@
                     {{ $device->last_temperature?->degree ?? '-' }} °C
                 </div>
                 <div class="text-sm font-medium text-gray-200">
-                    {{ $device->last_humidities?->percent ?? '-' }} %
+                    {{ $device->last_humidity?->percent ?? '-' }} %
                 </div>
                 <div class="text-sm font-medium text-gray-200">
                     {{ $device->last_pressure?->hpa ?? '-' }} hPa
