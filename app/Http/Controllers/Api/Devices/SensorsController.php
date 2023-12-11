@@ -94,23 +94,31 @@ class SensorsController extends Controller
 
     private function registerData(array $values): void
     {
-
-        Temperature::create([
-            'device_id' => $values['device_id'],
-            'degree' => $values['temperature'],
-        ]);
-        Humidity::create([
-            'device_id' => $values['device_id'],
-            'percent' => $values['humidity'],
-        ]);
-        Pressure::create([
-            'device_id' => $values['device_id'],
-            'hpa' => $values['pressure'],
-        ]);
-        BatteryLevel::create([
-            'device_id' => $values['device_id'],
-            'percent' => $values['battery'],
-        ]);
+        // if data then create
+        if(isset($values['temperature'])) {
+            Temperature::create([
+                'device_id' => $values['device_id'],
+                'degree' => $values['temperature'],
+            ]);
+        }
+        if (isset($values['humidity'])) {
+            Humidity::create([
+                'device_id' => $values['device_id'],
+                'percent' => $values['humidity'],
+            ]);
+        }
+        if (isset($values['pressure'])) {
+            Pressure::create([
+                'device_id' => $values['device_id'],
+                'hpa' => $values['pressure'],
+            ]);
+        }
+        if (isset($values['battery'])) {
+            BatteryLevel::create([
+                'device_id' => $values['device_id'],
+                'percent' => $values['battery'],
+            ]);
+        }
     }
 
     private function response($response): \Illuminate\Http\JsonResponse
