@@ -16,7 +16,7 @@ class CreatePressuresTable extends Migration
         Schema::create('pressures', function (Blueprint $table) {
             $table->id();
 
-            $table->float('hpa');
+            $table->float('hpa')->nullable();
 
             $table->foreignId('device_id');
 

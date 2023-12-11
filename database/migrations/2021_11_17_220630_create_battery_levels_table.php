@@ -16,7 +16,7 @@ class CreateBatteryLevelsTable extends Migration
         Schema::create('battery_levels', function (Blueprint $table) {
             $table->id();
 
-            $table->float('percent');
+            $table->float('percent')->nullable();
 
             $table->foreignId('device_id');
 

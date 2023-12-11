@@ -16,7 +16,7 @@ class CreateTemperaturesTable extends Migration
         Schema::create('temperatures', function (Blueprint $table) {
             $table->id();
 
-            $table->float('degree');
+            $table->float('degree')->nullable();
 
             $table->foreignId('device_id');
 

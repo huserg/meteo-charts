@@ -16,7 +16,7 @@ class CreateHumiditiesTable extends Migration
         Schema::create('humidities', function (Blueprint $table) {
             $table->id();
 
-            $table->float('percent');
+            $table->float('percent')->nullable();
 
             $table->foreignId('device_id');
 

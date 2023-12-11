@@ -13,7 +13,8 @@ use Illuminate\Support\Str;
 
 class SensorsController extends Controller
 {
-    public function raw_status(Request $request) {
+    public function raw_status(Request $request): \Illuminate\Http\JsonResponse
+    {
 
         if(empty($request->all())) {
             return $this->response([
@@ -91,7 +92,8 @@ class SensorsController extends Controller
 
     }
 
-    private function registerData(array $values) {
+    private function registerData(array $values): void
+    {
 
         Temperature::create([
             'device_id' => $values['device_id'],
@@ -111,7 +113,8 @@ class SensorsController extends Controller
         ]);
     }
 
-    private function response($response) {
+    private function response($response): \Illuminate\Http\JsonResponse
+    {
         return response()->json($response);
     }
 
