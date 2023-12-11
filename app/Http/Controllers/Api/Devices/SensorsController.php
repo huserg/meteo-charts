@@ -37,6 +37,7 @@ class SensorsController extends Controller
             ->first();
 
         $device->last_sync = now('Europe/Zurich');
+        $device->save();
 
         $values['device_id'] = $device->id;
 
