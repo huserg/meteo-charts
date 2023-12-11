@@ -1,3 +1,6 @@
 *
 !public/
 !.gitignore
+
+!public/devices/placeholder.png
+!public/users/placeholder.png

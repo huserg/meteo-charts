@@ -12,12 +12,16 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public const IMAGE_PATH = 'storage/users/';
+    public const DEFAULT_IMAGE = self::IMAGE_PATH . 'placeholder.png';
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-    protected array $fillable = [
+    protected $fillable = [
         'name',
         'email',
         'password',
@@ -41,6 +45,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getImageFailsafeAttribute() {
+        // if device image is not set, return default image
+        return $this->image ?? asset(self::DEFAULT_IMAGE);
+    }
+
 
     public function devices(): HasMany {
         return $this->hasMany(Device::class, 'owner_id', 'id');

@@ -11,7 +11,7 @@ class Pressure extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected array $fillable = [
+    protected $fillable = [
         'hpa',
         'device_id',
     ];

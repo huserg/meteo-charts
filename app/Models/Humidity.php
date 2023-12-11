@@ -11,7 +11,7 @@ class Humidity extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected array $fillable = [
+    protected $fillable = [
         'percent',
         'device_id',
     ];

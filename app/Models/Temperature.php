@@ -11,7 +11,7 @@ class Temperature extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected array $fillable = [
+    protected $fillable = [
         'degree',
         'device_id',
     ];
