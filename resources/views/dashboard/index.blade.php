@@ -27,7 +27,6 @@
                                         <div class="text-sm font-medium text-gray-200 mt-2">
                                             {{ $device->name }}
                                         </div>
-                                        // display battery level with icon or power cord icon
                                         <div class="text-sm font-medium text-gray-200 mt-2">
                                             @if($device->has_battery)
                                                 <i class="fas fa-sm fa-battery-full"></i>
