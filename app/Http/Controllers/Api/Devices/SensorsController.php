@@ -36,6 +36,8 @@ class SensorsController extends Controller
             ->where('mac_address', $mac)
             ->first();
 
+        $device->last_sync = now('Europe/Zurich');
+
         $values['device_id'] = $device->id;
 
         $values['temperature'] = $request->has('temperature')

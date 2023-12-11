@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('devices', function (Blueprint $table) {
-            $table->boolean('has_battery')->default(false)->after('owner_id');
+            $table->dateTimeTz('last_sync')->nullable()->after('owner_id');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('devices', function (Blueprint $table) {
-            $table->dropColumn('has_battery');
+            $table->dropColumn('last_sync');
         });
     }
 };

@@ -23,6 +23,6 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', [\App\Http\Controllers\Dashboard\DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('devices', App\Http\Controllers\Device\DeviceController::class);
+    Route::resource('devices', App\Http\Controllers\Device\DeviceController::class)->except(['show']);
 
 });

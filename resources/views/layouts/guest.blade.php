@@ -15,9 +15,11 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
+    <body class="dark">
+        <div class="font-sans bg-gray-100 dark:bg-dark-gray text-dark-gray dark:text-light antialiased">
             {{ $slot }}
         </div>
     </body>

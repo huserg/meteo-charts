@@ -19,18 +19,19 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+    <body class="antialiased dark">
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-dark-gray sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{ __('Dashboard') }}</a>
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-light-blue underline">{{ __('Dashboard') }}</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{ __('Log in') }}</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-light-blue dark:hover:text-light underline">{{ __('Log in') }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">{{ __('Register') }}</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-light-blue underline">{{ __('Register') }}</a>
                         @endif
                     @endauth
                 </div>
@@ -38,16 +39,20 @@
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <img src="{{ asset('logo.svg') }}" alt="Meteo Charts" class="content-center" width="200">
+                    <x-application-logo class="w-60 h-60 mx-auto" />
                 </div>
 
-                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0 mt-2 mb-10">
+                    <h1 class="text-7xl text-gray-600 dark:text-light-blue font-bold mx-auto">{{ config('app.name') }}</h1>
+                </div>
+            </div>
 
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Huser Networks &copy; 2021 - {{ date('Y') }} All rights reserved.
-                    </div>
+            <div class="hidden fixed bottom-0 right-0 px-6 py-4 sm:block">
+                <div class="ml-4 text-center text-sm text-gray-600 dark:text-gray-600 sm:text-right sm:ml-0">
+                   2021 - {{ date('Y') }} &copy; <a href="https://www.husnet.ch" target="_blank" class="text-light-blue hover:text-light dark:text-light-blue dark:hover:text-light">Huser Networks</a>
                 </div>
             </div>
         </div>
+
     </body>
 </html>

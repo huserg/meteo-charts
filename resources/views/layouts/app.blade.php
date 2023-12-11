@@ -15,13 +15,15 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased text-gray-50 bg-gray-900">
-        <div class="min-h-screen">
+    <body class="font-sans antialiased dark">
+        <div class="min-h-screen bg-gray-100 dark:bg-dark-gray text-dark-gray dark:text-light">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
-            <header class="bg-gray-900 shadow border-gray-500 border-b-2">
+            <header class="bg-black border-gray-500 dark:bg-black dark:border-blue shadow border-b-2">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>

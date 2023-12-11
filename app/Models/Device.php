@@ -23,7 +23,8 @@ class Device extends Model
         'token',
         'is_registrating',
         'has_battery',
-        'owner_id'
+        'owner_id',
+        'last_sync',
     ];
 
 
@@ -39,6 +40,9 @@ class Device extends Model
     }
     public function getLastPressureAttribute(): HasMany | null {
         return $this->pressures()->latest()->first();
+    }
+    public function getLastBatteryLevelAttribute(): HasMany | null {
+        return $this->batteryLevels()->latest()->first();
     }
 
 
@@ -58,7 +62,7 @@ class Device extends Model
         return $this->hasMany(BatteryLevel::class);
     }
 
-    protected static function booted()
+    protected static function booted(): void
     {
         static::addGlobalScope('user', function (Builder $builder) {
             $builder->where('owner_id', auth()->id());

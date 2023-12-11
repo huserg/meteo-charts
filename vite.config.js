@@ -10,5 +10,23 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        {
+            name: 'blade',
+            handleHotUpdate({ file, server }) {
+                if (file.endsWith('.blade.php')) {
+                    server.ws.send({
+                        type: 'full-reload',
+                        path: '*',
+                    });
+                }
+            },
+        },
     ],
+    server: {
+        host: '192.168.0.1',
+        port: 5173,
+        watch: {
+            usePolling: true,
+        },
+    },
 });
