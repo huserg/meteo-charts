@@ -2,17 +2,21 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pressure extends Model
 {
-    protected $table = 'pressure';
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'hpa', 'created_at'
+        'hpa',
+        'device_id',
     ];
 
-    public function sensor() {
-        return $this->belongsTo(Rpi::class);
+    public function device() : HasOne {
+        return $this->hasOne(Device::class);
     }
 }

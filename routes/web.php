@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,20 +13,16 @@
 |
 */
 
+require __DIR__.'/auth.php';
+
+
 Route::get('/', function () {
-
-    return view('auth/login');
-})->middleware('guest');
-
-Auth::routes();
-
-
-Route::get('register', function() {
-    return view ('auth/login');
-});
-Route::post('register',  function() {
-    return view ('auth/login');
+    return view('welcome');
 });
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::post('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::middleware(['auth'])->group(function() {
+    Route::get('/dashboard', [\App\Http\Controllers\Dashboard\DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('devices', App\Http\Controllers\Device\DeviceController::class)->except(['show']);
+
+});

@@ -1,2 +1,5 @@
 *
+!devices/
+!users/
 !.gitignore
+
