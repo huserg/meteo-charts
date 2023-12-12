@@ -55,7 +55,7 @@
                 <div class="flex justify-between w-full text-sm font-medium text-gray-200 dark:text-light mt-auto">
                     {{ __('Last sync') }}
                     <span class="text-gray-400 ps-1 text-end min-w-fit">
-                        {{ $device->last_sync_at?->diffForHumans() ?? '-' }}
+                        {{ $device->last_sync?->diffForHumans() ?? '-' }}
                     </span>
                 </div>
             </div>
