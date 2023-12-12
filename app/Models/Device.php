@@ -27,6 +27,11 @@ class Device extends Model
         'last_sync',
     ];
 
+    protected $casts = [
+        'is_registrating' => 'boolean',
+        'has_battery' => 'boolean',
+        'last_sync' => 'datetime',
+    ];
 
     public function getImageFailsafeAttribute() {
         // if device image is not set, return default image
