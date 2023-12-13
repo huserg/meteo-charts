@@ -8,7 +8,7 @@
      x-transition:leave-start="opacity-100 transform scale-100"
      x-transition:leave-end="opacity-0 transform scale-90"
 >
-    <div class="flex flex-col md:flex-row justify-between md:items-end">
+    <div class="flex flex-col md:flex-row justify-between md:items-center">
         <div class="flex justify-center items-center">
             <div class="flex flex-col items-center">
                 <div class="flex flex-row justify-items-center">
@@ -81,7 +81,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-row md:flex-col justify-between md:justify-end mt-4">
+        <div class="flex flex-row md:flex-col justify-between md:justify-end mt-4 md:mt-0">
             <div class="flex md:hidden flex-shrink-0">
                 <img class="h-10 w-10 rounded-full" src="{{ $device->owner->imageFailsafe }}" alt="{{ $device->owner->name }}">
             </div>
