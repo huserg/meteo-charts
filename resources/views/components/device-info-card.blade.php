@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <div class="hidden md:flex justify-center mt-4">
+        <div class="hidden md:flex justify-center mt-4 md:mt-0">
             <div class="flex-shrink-0 mr-3">
                 <img class="h-10 w-10 rounded-full" src="{{ $device->owner->imageFailsafe }}" alt="{{ $device->owner->name }}">
             </div>
