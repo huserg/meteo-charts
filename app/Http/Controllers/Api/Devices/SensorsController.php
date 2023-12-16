@@ -36,7 +36,7 @@ class SensorsController extends Controller
             ->where('mac_address', $mac)
             ->first();
 
-        $device->last_sync = now('Europe/Zurich');
+        $device->last_sync = now();
         $device->save();
 
         $values['device_id'] = $device->id;
