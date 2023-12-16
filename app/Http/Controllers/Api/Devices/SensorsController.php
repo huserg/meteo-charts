@@ -119,7 +119,7 @@ class SensorsController extends Controller
         if (isset($values['battery'])) {
             BatteryLevel::create([
                 'device_id' => $values['device_id'],
-                'percent' => $values['battery'],
+                'percent' => BatteryLevel::convertToPercent($values['battery']),
             ]);
         }
     }
