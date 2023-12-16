@@ -11,6 +11,7 @@ class BatteryLevel extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const STATE_CHARGED = 'charged';
     public const STATE_FULL = 'full';
     public const STATE_HIGH = 'high';
     public const STATE_MEDIUM = 'medium';
@@ -29,6 +30,9 @@ class BatteryLevel extends Model
     }
 
     public function getStateAttribute() : string {
+        if ($this->percent >= 100) {
+            return self::STATE_CHARGED;
+        }
         if ($this->percent > 80) {
             return self::STATE_FULL;
         }

@@ -28,6 +28,9 @@
                         @if($device->has_battery)
                             <i class="fas
                                         @switch($device->last_battery_level?->state)
+                                            @case(\App\Models\BatteryLevel::STATE_CHARGED)
+                                                text-green-500 fa-plug
+                                                @break
                                             @case(\App\Models\BatteryLevel::STATE_FULL)
                                                 text-green-500 fa-battery-full
                                                 @break
