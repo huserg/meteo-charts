@@ -15,27 +15,7 @@
                     <img class="h-10 w-10 rounded-full" src="{{ $device->imageFailsafe }}" alt="{{ $device->name }}">
                     <div class="text-sm font-medium text-gray-200 dark:text-light mt-auto">
                         @if($device->has_battery)
-                            <i class="fas
-                                @switch($device->last_battery_level?->state)
-                                    @case(\App\Models\BatteryLevel::STATE_FULL)
-                                        text-green-500 fa-battery-full
-                                        @break
-                                    @case(\App\Models\BatteryLevel::STATE_HIGH)
-                                        text-green-500 fa-battery-three-quarters
-                                        @break
-                                    @case(\App\Models\BatteryLevel::STATE_MEDIUM)
-                                        text-yellow-500 fa-battery-half
-                                        @break
-                                    @case(\App\Models\BatteryLevel::STATE_LOW)
-                                        text-yellow-500 fa-battery-quarter
-                                        @break
-                                    @case(\App\Models\BatteryLevel::STATE_CRITICAL)
-                                        text-red-500 fa-battery-empty
-                                        @break
-                                    @default
-                                        text-gray-500 fa-battery-empty
-                                @endswitch
-                            "></i>
+                            <x-battery-level :state="$device->last_battery_level?->state"/>
                         @else
                             <i class="fas fa-plug text-yellow-300"></i>
                         @endif
