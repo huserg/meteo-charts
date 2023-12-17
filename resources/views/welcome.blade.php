@@ -24,7 +24,7 @@
     <body class="antialiased dark">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-dark-gray sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="fixed top-0 right-0 px-6 py-4">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-light-blue underline">{{ __('Dashboard') }}</a>
                     @else
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="hidden fixed bottom-0 right-0 px-6 py-4 sm:block">
+            <div class="fixed bottom-0 right-0 px-6 py-4">
                 <div class="ml-4 text-center text-sm text-gray-600 dark:text-gray-600 sm:text-right sm:ml-0">
                    2021 - {{ date('Y') }} &copy; <a href="https://www.husnet.ch" target="_blank" class="text-light-blue hover:text-light dark:text-light-blue dark:hover:text-light">Huser Networks</a>
                 </div>
