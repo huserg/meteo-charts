@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('devices.index')" :active="request()->routeIs('devices.index')">
                         {{ __('Devices') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('graphs.index')" :active="request()->routeIs('graphs.index')">
+                        {{ __('Graphs') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -71,6 +74,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('devices.index')" :active="request()->routeIs('devices.index')" class="">
                 {{ __('Devices') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('graphs.index')" :active="request()->routeIs('graphs.index')" class="">
+                {{ __('Graphs') }}
             </x-responsive-nav-link>
         </div>
 
