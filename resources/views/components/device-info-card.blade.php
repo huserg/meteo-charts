@@ -26,7 +26,7 @@
                     <span>{{ __('Power source') }}</span>
                     <span class="ps-1 text-end min-w-fit">
                         @if($device->has_battery)
-                            <x-battery-level :state="$device->last_battery_level?->state"/>
+                            <x-battery-level :device="$device"/>
                         @else
                             <i class="fas fa-plug text-yellow-300"></i>
                         @endif

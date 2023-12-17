@@ -15,7 +15,7 @@
                     <img class="h-10 w-10 rounded-full" src="{{ $device->imageFailsafe }}" alt="{{ $device->name }}">
                     <div class="text-sm font-medium text-gray-200 dark:text-light mt-auto">
                         @if($device->has_battery)
-                            <x-battery-level :state="$device->last_battery_level?->state"/>
+                            <x-battery-level :device="$device"/>
                         @else
                             <i class="fas fa-plug text-yellow-300"></i>
                         @endif
