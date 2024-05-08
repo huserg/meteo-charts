@@ -15,11 +15,11 @@
                         </div>
                         <hr class="mb-2">
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                            @livewire('charts-component', ['device' => $device, 'type' => App\Livewire\ChartsComponent::TYPE_TEMPERATURE])
-                            @livewire('charts-component', ['device' => $device, 'type' => App\Livewire\ChartsComponent::TYPE_HUMIDITY])
-                            @livewire('charts-component', ['device' => $device, 'type' => App\Livewire\ChartsComponent::TYPE_PRESSURE])
+                            @livewire('charts-component', ['device' => $device, 'type' => App\Livewire\ChartsComponent::TYPE_TEMPERATURE, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo])
+                            @livewire('charts-component', ['device' => $device, 'type' => App\Livewire\ChartsComponent::TYPE_HUMIDITY, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo])
+                            @livewire('charts-component', ['device' => $device, 'type' => App\Livewire\ChartsComponent::TYPE_PRESSURE, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo])
                             @if($device->has_battery)
-                                @livewire('charts-component', ['device' => $device, 'type' => App\Livewire\ChartsComponent::TYPE_BATTERY])
+                                @livewire('charts-component', ['device' => $device, 'type' => App\Livewire\ChartsComponent::TYPE_BATTERY, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo])
                             @endif
                         </div>
                 </div>
