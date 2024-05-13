@@ -27,5 +27,5 @@
     @endswitch"
     ></i>
     <span class="text-sm text-white absolute bg-dark-blue rounded-lg p-2 transform -translate-y-4 translate-x-2"
-          x-show="tooltip">{{ $device->last_battery_level->percent }}{{ __('%') }}</span>
+          x-show="tooltip">{{ $device->last_battery_level?->percent }}{{ __('%') }}</span>
 </div>
