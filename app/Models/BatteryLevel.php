@@ -54,7 +54,9 @@ class BatteryLevel extends Model
     public static function convertToPercent(float $voltage) : int {
         // max voltage is 4.2V  (100%)
         // min voltage is 2.5V  (0%)
-        return (int) round(($voltage - 2.5) / (4.2 - 2.5) * 100);
+        $percent = (int) round(($voltage - 2.5) / (4.2 - 2.5) * 100);
+        // min - max return value is 0 - 100
+        return min(max($percent, 0), 100);
 
     }
 

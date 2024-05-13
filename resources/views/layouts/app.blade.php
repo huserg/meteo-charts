@@ -14,8 +14,6 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased dark">
@@ -34,5 +32,6 @@
                 {{ $slot }}
             </main>
         </div>
+
     </body>
 </html>
