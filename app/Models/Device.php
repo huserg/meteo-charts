@@ -68,6 +68,10 @@ class Device extends Model
         return $this->hasMany(BatteryLevel::class);
     }
 
+    public function logs(): HasMany {
+        return $this->hasMany(Log::class);
+    }
+
     protected static function booted(): void
     {
         static::addGlobalScope('user', function (Builder $builder) {
