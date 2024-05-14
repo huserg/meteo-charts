@@ -72,12 +72,16 @@ class LogsController extends Controller {
         if (json_last_error() !== JSON_ERROR_NONE) {
             // Handle JSON errors (e.g., logging, throwing an exception)
 //            Log::error("JSON decode error: " . json_last_error_msg());
-            return response()->json(['error' => 'Invalid log format'], 400);
+            return $this->response([
+                'code' => 13,
+                'message' => 'json_decode_error',
+            ]);
         }
+
         foreach ($logEntries as $entry) {
             foreach ($entry as $type => $message) {
                 $log = Log::create([
-                    'device_id' => $request->device->id, // Ensure you have this variable available
+                    'device_id' => $device->id, // Ensure you have this variable available
                 ]);
                 LogEntry::create([
                     'log_id' => $log->id,
