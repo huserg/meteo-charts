@@ -24,6 +24,9 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', [\App\Http\Controllers\Dashboard\DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('devices', App\Http\Controllers\Device\DeviceController::class)->except(['show']);
+    Route::group(['prefix' => 'devices/{device_id}', 'as' => 'devices.'], function() {
+        Route::get('/logs', [App\Http\Controllers\Device\LogController::class, 'index'])->name('logs.index');
+    });
 
     Route::group(['prefix' => 'graphs', 'as' => 'graphs.'], function() {
         Route::get('/', [App\Http\Controllers\Graph\GraphController::class, 'index'])->name('index');
