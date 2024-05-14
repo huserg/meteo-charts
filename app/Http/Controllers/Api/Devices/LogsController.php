@@ -25,25 +25,59 @@ class LogsController extends Controller {
             ]);
         }
 
-        $mac = $request->input('mac');
+        $mac = $request->has('mac')
+            ? $request->input('mac')
+            : null;
+        $token = $request->has('token')
+            ? $request->input('token')
+            : null;
 
         $device = Device::withoutGlobalScope('user')
             ->where('mac_address', $mac)
             ->first();
 
+        if(!isset($mac)) {
+            return $this->response([
+                'code' => 10,
+                'message' => 'mac_missing',
+            ]);
+        }
+
+        // no device found
+        if(!isset($device)) {
+            return $this->response([
+                'code' => 11,
+                'message' => 'no_device',
+            ]);
+        }
+
+        // check token
+        if($device->token != $token) {
+            return $this->response([
+                'code' => 12,
+                'message' => 'wrong_token',
+            ]);
+        }
+
+
         $logs = $request->has('logs')
             ? $request->input('logs')
             : [];
 
-        $logs = json_decode($logs);
-        // parse logs, logs is a json [{"key": "value"},{"key":...}] where key is the log type and value is the message
-        foreach($logs as $log_data) {
-            Log::create([
-                'device_id' => $device->id,
-                'type' => $log_data->key,
-                'message' => $log_data->value,
-            ]);
-        }
+        Log::create([
+            'device_id' => $device->id,
+            'type' => 'logs',
+            'message' => json_encode($logs),
+        ]);
+//        $logs = json_decode($logs);
+
+//        foreach($logs as $log_data) {
+//            Log::create([
+//                'device_id' => $device->id,
+//                'type' => $log_data->key,
+//                'message' => $log_data->value,
+//            ]);
+//        }
 
         return $this->response([
             'code' => 0,
