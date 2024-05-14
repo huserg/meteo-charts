@@ -35,9 +35,9 @@ class LogsController extends Controller {
             ? $request->input('logs')
             : [];
 
+        $logs = json_decode($logs);
         // parse logs, logs is a json [{"key": "value"},{"key":...}] where key is the log type and value is the message
         foreach($logs as $log_data) {
-            $log_data = json_decode($log_data);
             Log::create([
                 'device_id' => $device->id,
                 'type' => $log_data->key,
