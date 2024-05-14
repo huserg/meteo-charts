@@ -78,11 +78,13 @@ class LogsController extends Controller {
             ]);
         }
 
+        $log = Log::create([
+            'device_id' => $device->id, // Ensure you have this variable available
+        ]);
+
         foreach ($logEntries as $entry) {
             foreach ($entry as $type => $message) {
-                $log = Log::create([
-                    'device_id' => $device->id, // Ensure you have this variable available
-                ]);
+
                 LogEntry::create([
                     'log_id' => $log->id,
                     'type' => $type,
