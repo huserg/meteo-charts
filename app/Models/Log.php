@@ -13,10 +13,12 @@ class Log extends Model
 
 
     protected $fillable = [
-        'type',
-        'message',
         'device_id',
     ];
+
+    public function entries() {
+        return $this->hasMany(LogEntry::class);
+    }
 
     public function device() : HasOne {
         return $this->hasOne(Device::class);

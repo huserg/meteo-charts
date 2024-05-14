@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Devices;
 use App\Http\Controllers\Controller;
 use App\Models\Device;
 use App\Models\Log;
+use App\Models\LogEntry;
 use Illuminate\Http\Request;
 
 class LogsController extends Controller {
@@ -60,24 +61,31 @@ class LogsController extends Controller {
         }
 
 
-        $logs = $request->has('logs')
+        $rawLogs = $request->has('logs')
             ? $request->input('logs')
-            : [];
+            : "";
 
-        Log::create([
-            'device_id' => $device->id,
-            'type' => 'logs',
-            'message' => json_encode($logs),
-        ]);
-//        $logs = json_decode($logs);
+        $rawLogs = str_replace(array("'", "\\\""), array('"', "\""), $rawLogs); // Unescape previously escaped double quotes within strings
 
-//        foreach($logs as $log_data) {
-//            Log::create([
-//                'device_id' => $device->id,
-//                'type' => $log_data->key,
-//                'message' => $log_data->value,
-//            ]);
-//        }
+        $logEntries = json_decode($rawLogs, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            // Handle JSON errors (e.g., logging, throwing an exception)
+//            Log::error("JSON decode error: " . json_last_error_msg());
+            return response()->json(['error' => 'Invalid log format'], 400);
+        }
+        foreach ($logEntries as $entry) {
+            foreach ($entry as $type => $message) {
+                $log = Log::create([
+                    'device_id' => $request->device->id, // Ensure you have this variable available
+                ]);
+                LogEntry::create([
+                    'log_id' => $log->id,
+                    'type' => $type,
+                    'message' => $message,
+                ]);
+            }
+        }
 
         return $this->response([
             'code' => 0,

@@ -11,8 +11,7 @@
                 <div class="p-6">
                     @isset($device->logs)
                         @foreach($device->logs as $log)
-                            {{$log}}
-{{--                            <x-device-log-card :log="$log" />--}}
+                            <x-device-log-card :log="$log" />
                         @endforeach
                     @else
                         {{ __('No logs found for this device.') }}
