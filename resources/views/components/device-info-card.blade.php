@@ -61,12 +61,12 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-row md:flex-col justify-between md:justify-end mt-4 md:mt-0">
+        <div class="flex flex-row md:flex-col justify-between md:justify-end mt-4 md:mt-0 md:space-y-2">
             <div class="flex md:hidden flex-shrink-0">
                 <img class="h-10 w-10 rounded-full" src="{{ $device->owner->imageFailsafe }}" alt="{{ $device->owner->name }}">
             </div>
             <x-button-link secondary="true" :href="route('devices.logs.index', $device->id)">
-                <i class="fas fa-sm fa-file-text-o"></i>
+                <i class="fas fa-sm fa-file-alt"></i>
             </x-button-link>
             <x-button-link :href="route('devices.edit', $device->id)">
                 <i class="fas fa-sm fa-edit"></i>
@@ -74,7 +74,7 @@
             <form id="delete-device-form" action="{{ route('devices.destroy', $device->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button id="delete-device-{{$device->id}}" type="button" class="md:mt-2 h-full inline-flex items-center px-4 py-2 border rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none focus:ring disabled:opacity-25 transition ease-in-out duration-150
+                <button id="delete-device-{{$device->id}}" type="button" class="h-full inline-flex items-center px-4 py-2 border rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none focus:ring disabled:opacity-25 transition ease-in-out duration-150
                                                 text-red-400 hover:text-light hover:border-red-500 hover:bg-red-500 ring-red-500">
                     <i class="fas fa-sm fa-trash"></i>
                 </button>
