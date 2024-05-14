@@ -10,7 +10,7 @@
             <div class="overflow-hidden">
                 <div class="p-6">
                     @isset($device->logs)
-                        @foreach($device->logs as $log)
+                        @foreach($device->logs->sortByDesc('created_at') as $log)
                             <x-device-log-card :log="$log" />
                         @endforeach
                     @else
