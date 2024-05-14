@@ -65,6 +65,9 @@
             <div class="flex md:hidden flex-shrink-0">
                 <img class="h-10 w-10 rounded-full" src="{{ $device->owner->imageFailsafe }}" alt="{{ $device->owner->name }}">
             </div>
+            <x-button-link secondary="true" :href="route('devices.logs.index', $device->id)">
+                <i class="fas fa-sm fa-file-text-o"></i>
+            </x-button-link>
             <x-button-link :href="route('devices.edit', $device->id)">
                 <i class="fas fa-sm fa-edit"></i>
             </x-button-link>
