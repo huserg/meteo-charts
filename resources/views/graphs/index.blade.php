@@ -6,7 +6,16 @@
     </x-slot>
 
     <div class="py-8">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            {{-- Period filter --}}
+            <x-period-filter
+                :period="$period"
+                :periods="$periods"
+                :dateFrom="$dateFrom"
+                :dateTo="$dateTo"
+            />
+
+            {{-- Device charts --}}
             @forelse($devices as $device)
                 <div class="bg-light bg-opacity-5 rounded-lg shadow-lg overflow-hidden">
                     <div class="px-6 py-4 border-b border-light/10">
@@ -22,21 +31,21 @@
                                 'type' => App\Livewire\ChartsComponent::TYPE_TEMPERATURE,
                                 'dateFrom' => $dateFrom,
                                 'dateTo' => $dateTo
-                            ], key("temp-{$device->id}"))
+                            ], key("temp-{$device->id}-{$period}"))
 
                             @livewire('charts-component', [
                                 'device' => $device,
                                 'type' => App\Livewire\ChartsComponent::TYPE_HUMIDITY,
                                 'dateFrom' => $dateFrom,
                                 'dateTo' => $dateTo
-                            ], key("hum-{$device->id}"))
+                            ], key("hum-{$device->id}-{$period}"))
 
                             @livewire('charts-component', [
                                 'device' => $device,
                                 'type' => App\Livewire\ChartsComponent::TYPE_PRESSURE,
                                 'dateFrom' => $dateFrom,
                                 'dateTo' => $dateTo
-                            ], key("pres-{$device->id}"))
+                            ], key("pres-{$device->id}-{$period}"))
 
                             @if($device->has_battery)
                                 @livewire('charts-component', [
@@ -44,7 +53,7 @@
                                     'type' => App\Livewire\ChartsComponent::TYPE_BATTERY,
                                     'dateFrom' => $dateFrom,
                                     'dateTo' => $dateTo
-                                ], key("bat-{$device->id}"))
+                                ], key("bat-{$device->id}-{$period}"))
                             @endif
                         </div>
                     </div>
