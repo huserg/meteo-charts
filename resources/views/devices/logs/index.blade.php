@@ -9,10 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden">
                 <div class="p-6">
-                    @isset($device->logs)
-                        @foreach($device->logs->sortByDesc('created_at') as $log)
+                    @if($logs->count() > 0)
+                        @foreach($logs as $log)
                             <x-device-log-card :log="$log" />
                         @endforeach
+
+                        <div class="mt-6">
+                            {{ $logs->links() }}
+                        </div>
                     @else
                         {{ __('No logs found for this device.') }}
                     @endif
