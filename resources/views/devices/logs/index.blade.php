@@ -2,18 +2,18 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
-                <a href="{{ route('devices.index') }}" class="text-gray-400 hover:text-light-blue transition-colors">
+                <a href="{{ route('devices.index') }}" class="text-light/60 hover:text-light-blue transition-colors">
                     <i class="fas fa-arrow-left"></i>
                 </a>
                 <div>
-                    <h2 class="font-semibold text-xl text-gray-200 leading-tight">
+                    <h2 class="font-semibold text-xl text-light leading-tight">
                         {{ $device->name }}
                     </h2>
-                    <p class="text-sm text-gray-400">{{ __('Device Logs') }}</p>
+                    <p class="text-sm text-light/60">{{ __('Device Logs') }}</p>
                 </div>
             </div>
             <div class="flex items-center gap-4">
-                <span class="text-sm text-gray-400">
+                <span class="text-sm text-light/60">
                     <i class="fas fa-list-ul mr-1"></i>
                     {{ $logs->total() }} {{ __('total logs') }}
                 </span>
@@ -34,9 +34,9 @@
                     {{ $logs->links() }}
                 </div>
             @else
-                <div class="bg-gray-700 rounded-lg shadow-lg p-12 text-center">
-                    <i class="fas fa-inbox text-4xl text-gray-500 mb-4"></i>
-                    <p class="text-gray-400">{{ __('No logs found for this device.') }}</p>
+                <div class="bg-light/5 rounded-lg shadow-lg p-12 text-center">
+                    <i class="fas fa-inbox text-4xl text-light/30 mb-4"></i>
+                    <p class="text-light/60">{{ __('No logs found for this device.') }}</p>
                 </div>
             @endif
         </div>
