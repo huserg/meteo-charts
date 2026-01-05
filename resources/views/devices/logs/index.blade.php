@@ -1,27 +1,44 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-200 leading-tight">
-            {{ $device->name . ' ' . __('Logs') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-                <div class="p-6">
-                    @if($logs->count() > 0)
-                        @foreach($logs as $log)
-                            <x-device-log-card :log="$log" />
-                        @endforeach
-
-                        <div class="mt-6">
-                            {{ $logs->links() }}
-                        </div>
-                    @else
-                        {{ __('No logs found for this device.') }}
-                    @endif
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="{{ route('devices.index') }}" class="text-gray-400 hover:text-light-blue transition-colors">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div>
+                    <h2 class="font-semibold text-xl text-gray-200 leading-tight">
+                        {{ $device->name }}
+                    </h2>
+                    <p class="text-sm text-gray-400">{{ __('Device Logs') }}</p>
                 </div>
             </div>
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-400">
+                    <i class="fas fa-list-ul mr-1"></i>
+                    {{ $logs->total() }} {{ __('total logs') }}
+                </span>
+            </div>
+        </div>
+    </x-slot>
+
+    <div class="py-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if($logs->count() > 0)
+                <div class="space-y-4">
+                    @foreach($logs as $log)
+                        <x-device-log-card :log="$log" />
+                    @endforeach
+                </div>
+
+                <div class="mt-8">
+                    {{ $logs->links() }}
+                </div>
+            @else
+                <div class="bg-gray-700 rounded-lg shadow-lg p-12 text-center">
+                    <i class="fas fa-inbox text-4xl text-gray-500 mb-4"></i>
+                    <p class="text-gray-400">{{ __('No logs found for this device.') }}</p>
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

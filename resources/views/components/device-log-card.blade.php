@@ -1,4 +1,4 @@
-<div x-data="{ open: false }" class="bg-gray-700 dark:bg-light dark:bg-opacity-5 rounded-lg shadow-lg p-6 mb-6">
+<div x-data="{ open: false }" class="bg-gray-700 rounded-lg shadow-lg p-6">
     <div class="flex flex-col space-y-4">
         <div @click="open = !open" class="flex items-center justify-between w-full font-medium text-gray-200 dark:text-light mt-auto cursor-pointer">
             <div class="">
