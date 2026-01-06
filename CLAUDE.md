@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-MeteoCharts is a Laravel 10 web application for monitoring IoT meteorological sensors. It displays temperature, humidity, pressure, and battery data from devices through an interactive dashboard with Chart.js visualizations.
+MeteoCharts is a Laravel 12 web application for monitoring IoT meteorological sensors. It displays temperature, humidity, pressure, and battery data from devices through an interactive dashboard with Chart.js visualizations.
 
 ## Development Commands
 
