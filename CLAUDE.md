@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-MeteoCharts is a Laravel 10 web application for monitoring IoT meteorological sensors. It displays temperature, humidity, pressure, and battery data from devices through an interactive dashboard with Chart.js visualizations.
+MeteoCharts is a Laravel 12 web application for monitoring IoT meteorological sensors. It displays temperature, humidity, pressure, and battery data from devices through an interactive dashboard with Chart.js visualizations.
 
 ## Development Commands
 
@@ -64,7 +64,7 @@ Voltage to percentage: `(voltage - 2.5) / (4.2 - 2.5) * 100`
 - States: charged (≥100%), full (>80%), high (>60%), medium (>40%), low (>20%), critical (≤20%)
 
 ## Tech Stack
-- **Backend**: Laravel 10, PHP 8.2+, MySQL
+- **Backend**: Laravel 12, PHP 8.2+, MySQL
 - **Frontend**: Blade, Tailwind CSS, Alpine.js, Chart.js
 - **Reactivity**: Livewire 3
 - **Auth**: Laravel Breeze + Sanctum
