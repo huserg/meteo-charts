@@ -2,101 +2,133 @@
 
 namespace App\Livewire;
 
+use App\Enums\ChartType;
 use App\Models\Device;
 use Carbon\Carbon;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 use Livewire\Component;
 
 class ChartsComponent extends Component
 {
-    // DeviceChartType static constants
+    // Keep legacy constants for backwards compatibility
     public const TYPE_TEMPERATURE = 1;
     public const TYPE_HUMIDITY = 2;
     public const TYPE_PRESSURE = 3;
     public const TYPE_BATTERY = 4;
 
-
     public Device $device;
+    public ChartType $chartType;
+    public string $chartId;
     public array $labels = [];
-    public string $name = "";
-    public string $chartId = "";
     public array $data = [];
     public array $dataset = [];
-    public Carbon $dateFrom ;
-    public Carbon $dateTo ;
+    public Carbon $dateFrom;
+    public Carbon $dateTo;
 
     public function mount(int $type, Device $device, Carbon $dateFrom, Carbon $dateTo): void
     {
         $this->device = $device;
+        $this->chartType = ChartType::from($type);
         $this->dateFrom = $dateFrom;
         $this->dateTo = $dateTo;
+        $this->chartId = "chart-{$device->id}-{$type}";
 
-        $this->chartId = 'device-' . $this->device->id . '-' . $type . '-chart';
-
-        $this->name = $this->device->name;
-        $this->filterData($type);
+        $this->loadChartData();
     }
 
-    public function render(): View|Application|Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
+    public function render(): View
     {
         return view('livewire.charts-component');
     }
 
-    private function filterData(int $type): void
+    private function loadChartData(): void
     {
-        switch ($type) {
-            case self::TYPE_TEMPERATURE:
-                $this->processData($this->device->temperatures()->where('created_at', '>=', $this->dateFrom)->where('created_at', '<=', $this->dateTo)->get(), 'degree', 'Temperature (°C)');
-                break;
-            case self::TYPE_HUMIDITY:
-                $this->processData($this->device->humidities()->where('created_at', '>=', $this->dateFrom)->where('created_at', '<=', $this->dateTo)->get(), 'percent', 'Humidity (%)');
-                break;
-            case self::TYPE_PRESSURE:
-                $this->processData($this->device->pressures()->where('created_at', '>=', $this->dateFrom)->where('created_at', '<=', $this->dateTo)->get(), 'hpa', 'Pressure (hPa)');
-                break;
-            case self::TYPE_BATTERY:
-                $this->processData($this->device->batteryLevels()->where('created_at', '>=', $this->dateFrom)->where('created_at', '<=', $this->dateTo)->get(), 'percent', 'Battery (%)');
-                break;
-        }
-    }
+        $relation = $this->chartType->relation();
+        $valueKey = $this->chartType->valueKey();
 
-    private function processData($records, $valueKey, $labelDescription): void
-    {
-        $this->labels = $records->sortBy('created_at')->pluck('created_at')->map(function ($date) {
-            return $date->format('Y-m-d H:i:s');
-        })->toArray();
+        $records = $this->device->{$relation}()
+            ->whereBetween('created_at', [$this->dateFrom, $this->dateTo])
+            ->orderBy('created_at')
+            ->get();
 
-        $this->data = $records->sortBy('created_at')->pluck($valueKey)->toArray();
+        $this->labels = $records->pluck('created_at')
+            ->map(fn($date) => $date->format('Y-m-d H:i:s'))
+            ->toArray();
+
+        $this->data = $records->pluck($valueKey)->toArray();
 
         $this->dataset = [
             [
-                'label' => __($labelDescription),
+                'label' => $this->chartType->label(),
                 'data' => $this->data,
-                'borderColor' => $this->getColor($valueKey),
-                'backgroundColor' => $this->getBackgroundColor($valueKey),
+                'borderColor' => $this->chartType->color(),
+                'backgroundColor' => $this->chartType->backgroundColor(),
+                'fill' => true,
+                'tension' => 0.3,
             ],
         ];
     }
 
-    private function getColor($valueKey): string
+    public function getChartConfigProperty(): array
     {
-        return match($valueKey) {
-            'degree' => 'rgb(255, 99, 132)',
-            'percent' => 'rgb(54, 162, 235)',
-            'hpa' => 'rgb(75, 192, 192)',
-            default => 'rgb(201, 203, 207)'
-        };
+        return [
+            'type' => 'line',
+            'data' => [
+                'labels' => $this->labels,
+                'datasets' => $this->dataset,
+            ],
+            'options' => $this->getChartOptions(),
+        ];
     }
 
-    private function getBackgroundColor($valueKey): string
+    private function getChartOptions(): array
     {
-        return match($valueKey) {
-            'degree' => 'rgba(255, 99, 132, 0.5)',
-            'percent' => 'rgba(54, 162, 235, 0.5)',
-            'hpa' => 'rgba(75, 192, 192, 0.5)',
-            default => 'rgba(201, 203, 207, 0.5)'
-        };
+        return [
+            'responsive' => true,
+            'maintainAspectRatio' => true,
+            'aspectRatio' => 2,
+            'interaction' => [
+                'mode' => 'index',
+                'intersect' => false,
+            ],
+            'plugins' => [
+                'legend' => [
+                    'display' => true,
+                    'labels' => [
+                        'color' => 'rgba(249, 255, 254, 0.8)',
+                    ],
+                ],
+                'title' => [
+                    'display' => false,
+                ],
+            ],
+            'scales' => [
+                'x' => [
+                    'type' => 'time',
+                    'time' => [
+                        'unit' => 'day',
+                        'parser' => 'yyyy-MM-dd HH:mm:ss',
+                        'tooltipFormat' => 'EEEE dd MMMM yyyy - HH:mm',
+                        'displayFormats' => [
+                            'day' => 'EEE, d.M.yy',
+                        ],
+                    ],
+                    'grid' => [
+                        'color' => 'rgba(249, 255, 254, 0.1)',
+                    ],
+                    'ticks' => [
+                        'color' => 'rgba(249, 255, 254, 0.6)',
+                    ],
+                ],
+                'y' => [
+                    'grid' => [
+                        'color' => 'rgba(249, 255, 254, 0.1)',
+                    ],
+                    'ticks' => [
+                        'color' => 'rgba(249, 255, 254, 0.6)',
+                    ],
+                ],
+            ],
+        ];
     }
 }

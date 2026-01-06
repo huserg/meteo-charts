@@ -1,55 +1,25 @@
-<div style="max-height: 300px !important;"
-     wire:key="{{ $chartId }}"
-     x-data="{ chart: null, chartId: @js($chartId), labels: @js($labels), datasets: @js($dataset), name: @js($name) }"
-     x-init="
-      let chartExist = Chart.getChart(chartId);
-        if (chartExist !== undefined)
-            chartExist.destroy();
+<div wire:key="{{ $chartId }}" class="bg-light/5 rounded-lg p-4">
+    <div class="flex items-center gap-2 mb-3">
+        <i class="fas {{ $chartType->icon() }} text-light/60"></i>
+        <span class="text-sm font-medium text-light/80">{{ $chartType->label() }}</span>
+    </div>
 
-    chart = new Chart(document.getElementById(chartId).getContext('2d'), {
-         type: 'line',
-         data: {
-             labels: labels,
-             datasets: datasets
-         },
-         options: {
-            responsive: true,
-            interaction: {
-              mode: 'index',
-              intersect: false
-            },
-            aspectRatio: 2,
-            scales: {
-              x: {
-                type: 'time',
-                time: {
-                  unit: 'day',
-                  parser: 'yyyy-MM-dd HH:mm:ss',
-                  tooltipFormat: 'EEEE dd MMMM yyyy - HH:mm',
-                  displayFormats: {
-                    day: 'EEE, d.M.yy'
-                  }
-                },
-                title: {
-                  display: false,
-                  text: 'Date'
-                }
-              },
-              y: {
-                title: {
-                  display: false,
-                  text: name
-                }
-              }
-            },
-            plugins: {
-              title: {
-                display: false,
-                text: name
-              }
+    @if(count($data) > 0)
+        <div x-data="{
+            chart: null,
+            init() {
+                const ctx = document.getElementById('{{ $chartId }}').getContext('2d');
+                const existing = Chart.getChart('{{ $chartId }}');
+                if (existing) existing.destroy();
+
+                this.chart = new Chart(ctx, @js($this->chartConfig));
             }
-          }
-      });
-      ">
-    <canvas id="{{ $chartId }}" height="300"></canvas>
+        }" x-init="init()">
+            <canvas id="{{ $chartId }}"></canvas>
+        </div>
+    @else
+        <div class="flex items-center justify-center h-32 text-light/40">
+            <span>{{ __('No data available') }}</span>
+        </div>
+    @endif
 </div>
