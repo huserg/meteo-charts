@@ -1,0 +1,3 @@
+Warning: model.generationConfig.maxRetries is ignored for provider model "qwen3-235b-a22b-instruct-2507" from modelProviders.openai. Move this field to modelProviders.openai[].generationConfig for that model if you want it to apply.
+Warning: running headless with --yolo / approval-mode=yolo and no sandbox. All tool calls (shell, write, edit) auto-execute at this process's privilege level. Enable a sandbox via --sandbox / QWEN_SANDBOX, or set QWEN_CODE_SUPPRESS_YOLO_WARNING=1 to silence this notice.
+[API Error: Connection error. (cause: connect ECONNREFUSED 127.0.0.1:8080)]
